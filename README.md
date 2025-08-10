@@ -1,11 +1,3 @@
-# car-spa-github-page
-
-Got it — you want a README that’s **clear, friendly, and non-technical**, so a business owner could understand what this site is, how to keep it updated, and how you can help them with similar projects.
-
-Here’s a good starting point you can drop into your repo:
-
----
-
 # The Car Spa – Website
 
 Welcome to **The Car Spa** official website repository.
