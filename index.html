@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Car Spa | Detailing & Wash</title>
+  <meta name="description" content="The Car Spa — premium car cleaning, detailing, and protection services." />
+  <style>
+    :root{
+      --red:#e11d48; /* rose-600 */
+      --red-dark:#be123c; /* rose-700 */
+      --black:#0f1115;
+      --gray:#1a1d24;
+      --silver:#c0c4cc;
+      --soft:#f3f4f6;
+      --radius:18px;
+      --shadow:0 10px 30px rgba(0,0,0,.25);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:linear-gradient(180deg,#0c0f14,#12161d 35%,#0c0f14);color:#e5e7eb;font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial,Apple Color Emoji,Segoe UI Emoji}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block;border-radius:14px}
+
+    /* Layout */
+    .container{max-width:1100px;margin:0 auto;padding:0 20px}
+    header{position:sticky;top:0;z-index:50;background:rgba(15,17,21,.75);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid #222}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .badge{width:38px;height:38px;display:grid;place-items:center;background:conic-gradient(from 210deg at 50% 50%,#111 0 35%,var(--red) 35% 65%,#444 65% 100%);border-radius:12px;box-shadow:var(--shadow)}
+    .brand h1{font-size:18px;margin:0;letter-spacing:.5px}
+
+    .menu{display:flex;align-items:center;gap:22px}
+    .menu a{opacity:.86}
+    .menu a.active,.menu a:hover{opacity:1}
+    .cta{background:var(--red);padding:10px 14px;border-radius:12px;box-shadow:0 8px 18px rgba(225,29,72,.35);font-weight:600}
+    .cta:hover{background:var(--red-dark)}
+
+    /* Mobile menu */
+    .hamburger{display:none;cursor:pointer;border:1px solid #333;padding:8px 10px;border-radius:12px}
+    @media (max-width:860px){
+      .menu{display:none}
+      .hamburger{display:block}
+      .mobile{display:none;position:absolute;left:0;right:0;top:64px;background:#0f1115;border-bottom:1px solid #222}
+      .mobile a{display:block;padding:14px 20px;border-top:1px solid #151922}
+    }
+
+    /* Hero */
+    .hero{padding:60px 0 24px}
+    .hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center}
+    @media (max-width:860px){.hero .wrap{grid-template-columns:1fr}}
+    .tag{display:inline-flex;align-items:center;gap:8px;background:#121721;border:1px solid #1f2430;color:#cbd5e1;padding:6px 10px;border-radius:999px;font-size:12px}
+    .title{font-size:40px;line-height:1.05;margin:14px 0 8px;letter-spacing:.3px}
+    .sub{color:#b6bac3;max-width:52ch}
+    .actions{display:flex;gap:12px;margin-top:18px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:14px;border:1px solid #2a2f3a;background:#131823}
+    .btn.primary{background:var(--red);border:none;box-shadow:0 10px 22px rgba(225,29,72,.28);font-weight:700}
+    .btn.primary:hover{background:var(--red-dark)}
+
+    .hero-card{background:radial-gradient(1200px 600px at 110% -20%,rgba(225,29,72,.22),transparent 45%), linear-gradient(180deg,#0f1218,#111723);border:1px solid #1e2430;padding:18px;border-radius:var(--radius);box-shadow:var(--shadow)}
+    .hero-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+    .hero-grid .ph{height:92px;background:linear-gradient(180deg,#0e131c,#0f151f);border:1px dashed #2b3240;border-radius:14px;display:grid;place-items:center;color:#8b93a6;font-size:12px}
+
+    /* Sections */
+    section{padding:54px 0;border-top:1px solid #1a1f2b}
+    .sec-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:18px}
+    h2{margin:0;font-size:28px}
+    p.muted{color:#a9afbd}
+
+    /* Services */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media (max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:620px){.grid{grid-template-columns:1fr}}
+    .card{background:linear-gradient(180deg,#0e1219,#0f141e);border:1px solid #1e2432;padding:18px;border-radius:var(--radius);transition:transform .2s ease, box-shadow .2s ease}
+    .card:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(0,0,0,.35)}
+    .price{color:var(--silver);font-weight:700}
+    .chip{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid #2a3040;background:#121822;font-size:12px;color:#b7bfce}
+
+    /* Gallery */
+    .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    @media (max-width:1020px){.gallery{grid-template-columns:repeat(3,1fr)}}
+    @media (max-width:720px){.gallery{grid-template-columns:repeat(2,1fr)}}
+    .shot{position:relative;aspect-ratio:4/3;background:linear-gradient(180deg,#0e1219,#0f141e);border:1px solid #1e2432;border-radius:14px;display:grid;place-items:center;color:#8b93a6}
+    .shot::after{content:"Photo";position:absolute;bottom:8px;right:10px;font-size:12px;color:#9aa3b6;background:#0e1420;padding:4px 8px;border-radius:999px;border:1px solid #2a3140}
+
+    /* About */
+    .about{display:grid;grid-template-columns:1.1fr .9fr;gap:22px}
+    @media (max-width:860px){.about{grid-template-columns:1fr}}
+
+    /* Contact */
+    form{display:grid;gap:12px}
+    input,textarea,select{width:100%;padding:12px;border-radius:12px;border:1px solid #283043;background:#0f1520;color:#e5e7eb}
+    label{font-size:14px;color:#b5bccb}
+    .note{font-size:12px;color:#a3adbd}
+
+    footer{padding:40px 0;border-top:1px solid #1a1f2b;color:#98a2b3;background:#0c0f14}
+
+    /* Lang toggle */
+    .lang{display:flex;align-items:center;gap:10px;border:1px solid #2a3040;border-radius:14px;padding:6px}
+    .lang button{border:none;background:transparent;color:#cbd5e1;padding:6px 10px;border-radius:10px;cursor:pointer}
+    .lang button.active{background:#151b26}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="badge" aria-hidden="true">
+          <!-- Simple logo icon -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 14c0-3 3-7 9-7s9 4 9 7-3 5-9 5-9-2-9-5Z" fill="white"/>
+            <path d="M7 13h10" stroke="var(--red)" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h1 data-i18n="brand">The Car Spa</h1>
+      </div>
+
+      <nav class="menu" aria-label="Main">
+        <a class="active" href="#home" data-i18n="nav_home">Home</a>
+        <a href="#services" data-i18n="nav_services">Services</a>
+        <a href="#gallery" data-i18n="nav_gallery">Gallery</a>
+        <a href="#about" data-i18n="nav_about">About</a>
+        <a href="#contact" data-i18n="nav_contact">Contact</a>
+        <a class="cta" href="#contact" data-i18n="nav_book">Book Now</a>
+        <div class="lang" role="group" aria-label="Language toggle">
+          <button id="lang-en" class="active" aria-pressed="true">EN</button>
+          <button id="lang-es" aria-pressed="false">ES</button>
+        </div>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu">☰</button>
+      <div class="mobile" id="mobile">
+        <a class="active" href="#home" data-i18n="nav_home">Home</a>
+        <a href="#services" data-i18n="nav_services">Services</a>
+        <a href="#gallery" data-i18n="nav_gallery">Gallery</a>
+        <a href="#about" data-i18n="nav_about">About</a>
+        <a href="#contact" data-i18n="nav_contact">Contact</a>
+        <a class="cta" href="#contact" data-i18n="nav_book">Book Now</a>
+        <div style="padding:14px 20px">
+          <div class="lang" role="group" aria-label="Language toggle">
+            <button id="m-lang-en" class="active" aria-pressed="true">EN</button>
+            <button id="m-lang-es" aria-pressed="false">ES</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="home" class="hero">
+    <div class="container wrap">
+      <div>
+        <span class="tag">✨ <span data-i18n="tagline">Showroom shine, every time</span></span>
+        <h2 class="title" data-i18n="hero_title">Premium Detailing & Car Care in Your City</h2>
+        <p class="sub" data-i18n="hero_sub">From quick washes to full interior & exterior detailing, ceramic protection, and fleet care — we treat your ride like it’s headed to the red carpet.</p>
+        <div class="actions">
+          <a class="btn primary" href="#contact" data-i18n="cta_book">Book an Appointment</a>
+          <a class="btn" href="#services" data-i18n="cta_explore">Explore Services</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-grid">
+          <div class="ph">Before</div>
+          <div class="ph">After</div>
+          <div class="ph">Interior</div>
+          <div class="ph">Ceramic</div>
+          <div class="ph">Engine Bay</div>
+          <div class="ph">Headlights</div>
+        </div>
+        <p class="note" style="margin-top:10px">(Replace these placeholders with real shots later.)</p>
+      </div>
+    </div>
+  </main>
+
+  <section id="services" class="container">
+    <div class="sec-head">
+      <h2 data-i18n="services_title">Popular Services</h2>
+      <a href="#contact" class="chip" data-i18n="services_note">Custom quotes available</a>
+    </div>
+    <p class="muted" data-i18n="services_intro">Keep services on the home page for quick scanning. If your menu grows large, you can add a full Services page later.</p>
+    <div class="grid" style="margin-top:16px">
+      <article class="card">
+        <h3 data-i18n="svc1_title">Express Wash</h3>
+        <p data-i18n="svc1_desc">Hand wash, wheel clean, quick interior vacuum, windows.</p>
+        <p class="price">$35</p>
+      </article>
+      <article class="card">
+        <h3 data-i18n="svc2_title">Interior Refresh</h3>
+        <p data-i18n="svc2_desc">Deep vacuum, wipe-down, steam clean high-touch areas.</p>
+        <p class="price">$85</p>
+      </article>
+      <article class="card">
+        <h3 data-i18n="svc3_title">Exterior Detail</h3>
+        <p data-i18n="svc3_desc">Foam wash, clay bar, machine polish, sealant.</p>
+        <p class="price">$150</p>
+      </article>
+      <article class="card">
+        <h3 data-i18n="svc4_title">Full Detail</h3>
+        <p data-i18n="svc4_desc">Interior + exterior overhaul for that just-bought feeling.</p>
+        <p class="price">$260</p>
+      </article>
+      <article class="card">
+        <h3 data-i18n="svc5_title">Headlight Restoration</h3>
+        <p data-i18n="svc5_desc">Clear, protect, and restore night-time visibility.</p>
+        <p class="price">$80</p>
+      </article>
+      <article class="card">
+        <h3 data-i18n="svc6_title">Ceramic Coating</h3>
+        <p data-i18n="svc6_desc">Long-term gloss & protection. Multi-year packages.</p>
+        <p class="price">Starting $700</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="gallery" class="container">
+    <div class="sec-head">
+      <h2 data-i18n="gallery_title">Gallery</h2>
+      <p class="muted" data-i18n="gallery_hint">Add before/after shots to build trust. Keep it curated and punchy.</p>
+    </div>
+    <div class="gallery">
+      <div class="shot"></div>
+      <div class="shot"></div>
+      <div class="shot"></div>
+      <div class="shot"></div>
+      <div class="shot"></div>
+      <div class="shot"></div>
+      <div class="shot"></div>
+      <div class="shot"></div>
+    </div>
+  </section>
+
+  <section id="about" class="container">
+    <div class="sec-head">
+      <h2 data-i18n="about_title">About Us</h2>
+    </div>
+    <div class="about">
+      <div>
+        <p data-i18n="about_body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac magna ac augue luctus efficitur. Integer vitae nibh eu nisl feugiat scelerisque. Vestibulum non egestas ipsum. Cras lacinia, arcu sed consectetur tristique, augue ante porttitor mauris, vitae tincidunt odio mi in nisl.</p>
+        <p data-i18n="about_body2">Mauris in semper mi. Etiam quis dictum lectus. Donec tempor condimentum lacus, sed volutpat nisi condimentum eget. Donec sodales nibh et urna blandit, vel eleifend nibh posuere.</p>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0" data-i18n="about_stats">Why choose The Car Spa?</h3>
+        <ul>
+          <li data-i18n="about_point1">Insured, professional detailers</li>
+          <li data-i18n="about_point2">Mobile appointments available</li>
+          <li data-i18n="about_point3">Eco-friendly products</li>
+          <li data-i18n="about_point4">Transparent pricing</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="container">
+    <div class="sec-head">
+      <h2 data-i18n="contact_title">Contact & Booking</h2>
+      <p class="muted" data-i18n="contact_hint">Prefer texting or Instagram DMs? Add those links here.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <form action="#" method="post" onsubmit="alert(trans('toast_submit'));return false;">
+          <div>
+            <label for="name" data-i18n="form_name">Name</label>
+            <input id="name" name="name" placeholder="Jane Doe" />
+          </div>
+          <div>
+            <label for="email" data-i18n="form_email">Email</label>
+            <input id="email" name="email" placeholder="jane@email.com" />
+          </div>
+          <div>
+            <label for="service" data-i18n="form_service">Service</label>
+            <select id="service" name="service">
+              <option data-i18n="svc1_title">Express Wash</option>
+              <option data-i18n="svc2_title">Interior Refresh</option>
+              <option data-i18n="svc3_title">Exterior Detail</option>
+              <option data-i18n="svc4_title">Full Detail</option>
+              <option data-i18n="svc5_title">Headlight Restoration</option>
+              <option data-i18n="svc6_title">Ceramic Coating</option>
+            </select>
+          </div>
+          <div>
+            <label for="msg" data-i18n="form_message">Message</label>
+            <textarea id="msg" name="message" rows="4" placeholder="Vehicle make/model, preferred dates…"></textarea>
+          </div>
+          <button class="btn primary" type="submit" data-i18n="form_send">Send</button>
+          <p class="note" data-i18n="contact_note">Hook this up to Formspree or Google Forms later.</p>
+        </form>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0" data-i18n="info_title">Shop Info</h3>
+        <p><strong data-i18n="brand">The Car Spa</strong><br>123 Detailing Ave, Your City</p>
+        <p><strong data-i18n="info_hours">Hours</strong>: Mon–Sat 9am–6pm</p>
+        <p><strong data-i18n="info_phone">Phone</strong>: (555) 123‑4567</p>
+        <p><strong>Instagram</strong>: @thecarspa</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap">
+      <p>© <span id="year"></span> <span data-i18n="brand">The Car Spa</span>. <span data-i18n="rights">All rights reserved.</span></p>
+      <p class="note"><a href="#about" data-i18n="footer_about">About</a> • <a href="#services" data-i18n="footer_services">Services</a> • <a href="#contact" data-i18n="footer_contact">Contact</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const ham = document.getElementById('hamburger');
+    const mobile = document.getElementById('mobile');
+    ham.addEventListener('click',()=>{
+      mobile.style.display = mobile.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Simple i18n
+    const dict = {
+      en: {
+        brand: 'The Car Spa',
+        nav_home:'Home', nav_services:'Services', nav_gallery:'Gallery', nav_about:'About', nav_contact:'Contact', nav_book:'Book Now',
+        tagline:'Showroom shine, every time',
+        hero_title:'Premium Detailing & Car Care in Your City',
+        hero_sub:'From quick washes to full interior & exterior detailing, ceramic protection, and fleet care — we treat your ride like it’s headed to the red carpet.',
+        cta_book:'Book an Appointment', cta_explore:'Explore Services',
+        services_title:'Popular Services', services_note:'Custom quotes available', services_intro:'Keep services on the home page for quick scanning. If your menu grows large, you can add a full Services page later.',
+        svc1_title:'Express Wash', svc1_desc:'Hand wash, wheel clean, quick interior vacuum, windows.',
+        svc2_title:'Interior Refresh', svc2_desc:'Deep vacuum, wipe-down, steam clean high-touch areas.',
+        svc3_title:'Exterior Detail', svc3_desc:'Foam wash, clay bar, machine polish, sealant.',
+        svc4_title:'Full Detail', svc4_desc:'Interior + exterior overhaul for that just-bought feeling.',
+        svc5_title:'Headlight Restoration', svc5_desc:'Clear, protect, and restore night-time visibility.',
+        svc6_title:'Ceramic Coating', svc6_desc:'Long-term gloss & protection. Multi-year packages.',
+        gallery_title:'Gallery', gallery_hint:'Add before/after shots to build trust. Keep it curated and punchy.',
+        about_title:'About Us', about_body:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac magna ac augue luctus efficitur. Integer vitae nibh eu nisl feugiat scelerisque. Vestibulum non egestas ipsum. Cras lacinia, arcu sed consectetur tristique, augue ante porttitor mauris, vitae tincidunt odio mi in nisl.', about_body2:'Mauris in semper mi. Etiam quis dictum lectus. Donec tempor condimentum lacus, sed volutpat nisi condimentum eget. Donec sodales nibh et urna blandit, vel eleifend nibh posuere.',
+        about_stats:'Why choose The Car Spa?', about_point1:'Insured, professional detailers', about_point2:'Mobile appointments available', about_point3:'Eco-friendly products', about_point4:'Transparent pricing',
+        contact_title:'Contact & Booking', contact_hint:'Prefer texting or Instagram DMs? Add those links here.',
+        form_name:'Name', form_email:'Email', form_service:'Service', form_message:'Message', form_send:'Send',
+        contact_note:'Hook this up to Formspree or Google Forms later.',
+        info_title:'Shop Info', info_hours:'Hours', info_phone:'Phone',
+        rights:'All rights reserved.', footer_about:'About', footer_services:'Services', footer_contact:'Contact',
+        toast_submit:'Thanks! This demo form is not wired up yet.'
+      },
+      es: {
+        brand: 'The Car Spa',
+        nav_home:'Inicio', nav_services:'Servicios', nav_gallery:'Galería', nav_about:'Nosotros', nav_contact:'Contacto', nav_book:'Agendar',
+        tagline:'Brillo de agencia, siempre',
+        hero_title:'Detalle y cuidado premium para tu auto',
+        hero_sub:'Desde lavados rápidos hasta detallado interior y exterior, protección cerámica y servicio a flotillas — tratamos tu coche como estrella de alfombra roja.',
+        cta_book:'Reservar una cita', cta_explore:'Ver servicios',
+        services_title:'Servicios Populares', services_note:'Cotizaciones personalizadas', services_intro:'Mantén los servicios en la página principal para fácil lectura. Si el menú crece, agrega una página dedicada después.',
+        svc1_title:'Lavado Exprés', svc1_desc:'Lavado a mano, rines, aspirado rápido, cristales.',
+        svc2_title:'Refresco Interior', svc2_desc:'Aspirado profundo, limpieza de superficies y vapor.',
+        svc3_title:'Detalle Exterior', svc3_desc:'Espuma, clay bar, pulido con máquina, sellador.',
+        svc4_title:'Detalle Completo', svc4_desc:'Interior + exterior para sentirlo como nuevo.',
+        svc5_title:'Restauración de Faros', svc5_desc:'Aclarado, protección y mejor visibilidad nocturna.',
+        svc6_title:'Cerámico', svc6_desc:'Brillo y protección a largo plazo. Paquetes multi‑año.',
+        gallery_title:'Galería', gallery_hint:'Comparte antes/después para generar confianza. Manténla curada y directa.',
+        about_title:'Sobre Nosotros', about_body:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac magna ac augue luctus efficitur. Integer vitae nibh eu nisl feugiat scelerisque. Vestibulum non egestas ipsum. Cras lacinia, arcu sed consectetur tristique, augue ante porttitor mauris, vitae tincidunt odio mi in nisl.', about_body2:'Mauris in semper mi. Etiam quis dictum lectus. Donec tempor condimentum lacus, sed volutpat nisi condimentum eget. Donec sodales nibh et urna blandit, vel eleifend nibh posuere.',
+        about_stats:'¿Por qué elegir The Car Spa?', about_point1:'Detailers profesionales con seguro', about_point2:'Citas móviles disponibles', about_point3:'Productos eco‑amigables', about_point4:'Precios transparentes',
+        contact_title:'Contacto y Citas', contact_hint:'¿Prefieres WhatsApp o Instagram? Agrega esos enlaces aquí.',
+        form_name:'Nombre', form_email:'Correo', form_service:'Servicio', form_message:'Mensaje', form_send:'Enviar',
+        contact_note:'Conecta esto con Formspree o Google Forms después.',
+        info_title:'Información', info_hours:'Horario', info_phone:'Teléfono',
+        rights:'Todos los derechos reservados.', footer_about:'Nosotros', footer_services:'Servicios', footer_contact:'Contacto',
+        toast_submit:'¡Gracias! Este formulario es de demostración.'
+      }
+    };
+
+    const elements = document.querySelectorAll('[data-i18n]');
+    function trans(key){
+      return dict[current][key] || key;
+    }
+    function applyLang(){
+      elements.forEach(el=>{
+        const k = el.getAttribute('data-i18n');
+        if(el.tagName==='INPUT' || el.tagName==='TEXTAREA'){
+          el.placeholder = trans(k);
+        } else {
+          el.textContent = trans(k);
+        }
+      });
+      // sync active states
+      document.getElementById('lang-en').classList.toggle('active', current==='en');
+      document.getElementById('lang-es').classList.toggle('active', current==='es');
+      document.getElementById('m-lang-en').classList.toggle('active', current==='en');
+      document.getElementById('m-lang-es').classList.toggle('active', current==='es');
+    }
+    let current = 'en';
+    ['lang-en','m-lang-en'].forEach(id=>document.getElementById(id).addEventListener('click',()=>{current='en';applyLang();}));
+    ['lang-es','m-lang-es'].forEach(id=>document.getElementById(id).addEventListener('click',()=>{current='es';applyLang();}));
+    applyLang();
+  </script>
+</body>
+</html>
