@@ -71,12 +71,6 @@ If you:
 
 ## 💬 Contact the Developer
 
-* Name: *Your Name Here*
-* Email: *[you@example.com](mailto:you@example.com)*
-* Instagram: *@yourhandle*
+* Name: *Adan Navejas*
+* Email: *[adann44@gmail.com](mailto:adann44@gmail.com)*
 
----
-
-If you’d like, I can also add a **“How to update this site without breaking it”** quick guide in the README with screenshots so even someone totally new to GitHub can feel confident editing their own site.
-
-Do you want me to add that step-by-step with screenshots? That would make this README even more business-owner friendly.
